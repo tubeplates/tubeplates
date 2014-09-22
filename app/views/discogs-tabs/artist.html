@@ -1,0 +1,44 @@
+<angular-table model="data.artist.content"  
+               resize-events ="[fullscreen]"
+               ng-show="tabActive('artist')">
+    <header-row>
+
+        <header-column class="thumbcol">
+        </header-column>
+
+        <header-column ng-click="sort('year')" class="yearcol">
+            <div>Year</div>
+            <sort-arrow name="year"/>
+        </header-column>
+
+        <header-column ng-click="sort('title')">
+            <div>Title</div>
+            <sort-arrow name="title"/>
+        </header-column>
+
+        <header-column ng-click="sort('artist')">
+            <div>Artist</div>
+            <sort-arrow name="artist"/>
+        </header-column>
+
+        <header-column ng-click="togglefullScreen()" class="fullscreenbtn">
+        <span></span>
+        </header-column>
+
+    </header-row>
+
+    <row ng-click="t_viewRelease($event,row)" ng-class="{selected: row.rowSelected}">
+        <column class="thumbcol"
+              ng-mouseenter="setCoverimg(row.thumb)"
+              ng-mouseleave="setCoverimg()">
+          <img class="thumb" ng-src="{{ row.thumb}}"/>
+        </column>
+        <column class="yearcol">{{ row.year}}</column>
+        <column>{{ row.title}}</column>
+        <column>{{ row.artist}}</column>
+        <column ng-click="t_addToPlaylist($event,row)" class="plbtn">
+          <span></span>
+        </column>
+    </row>
+
+</angular-table>

@@ -1,0 +1,250 @@
+#search_form {
+  @extend .row;
+  margin:0 auto;
+}
+#search_form form {
+  @extend .form-inline;
+  float:left;
+  width:100%;
+  display:block;
+  margin:10px 0;
+  input:focus,select:focus {
+    box-shadow:none !important;
+    border:2px solid $tp-blue !important;
+  }
+}
+
+#search_form
+input,select {
+  @extend .form-control;
+}
+
+#search_category {
+  @extend .col-md-4;
+}
+#query {
+  @extend .col-md-8;
+}
+
+#loaderImage {
+  display:block;
+  margin: 0 auto;
+  margin-top:3px;
+}
+
+#cover {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;  
+  left: 50%;
+  z-index: 9999;
+  width:250px;
+  height:250px;
+  max-height: 50%;
+  max-width: 50%; 
+  img {
+    width:100%;
+    height:100%;
+  }
+  .img_caption{
+    background: none repeat scroll 0 0 $tp-black;
+    opacity: 0.7;
+    left:0;
+    padding:5px;
+    top:0;
+    bottom:0;
+    right:0;
+    position: absolute;
+    bottom: 0px;
+    color:$tp-white;
+    font-size:10px;
+    margin-top: 75%;
+  }
+}
+
+.discogs-browser {
+    width: 100%;
+    height: 100%;
+}
+
+#tab_buttons {
+  @extend .btn-group;
+  button {
+    @extend .btn;
+    @extend .btn-danger;
+    display: inline-block !important;
+  }
+  #searchicon {
+    @extend .glyphicon;
+    @extend .glyphicon-search;
+  }
+  #releaseicon {
+    @extend .glyphicon;
+    @extend .glyphicon-book;
+  }
+  #artisticon {
+    @extend .glyphicon;
+    @extend .glyphicon-user;
+  }
+  #labelicon {
+    @extend .glyphicon;
+    @extend .glyphicon-tag;
+  }
+}
+
+.angularTableContainer {
+  background-color:$tp-white;
+}
+
+.angularTableRow {
+  background-color:$tp-white;
+}
+
+.angularTableRow:nth-child(even) {
+    background-color: $tp-lightgray;
+}
+
+.angularTableRow.selected {
+  background-color: $tp-turqoise !important;
+}
+
+.angularTableTable,
+.angularTableHeaderTable{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  border:none;
+}
+
+.angularTableColumn,
+.angularTableHeaderColumn{
+  border: 1px solid $tp-mediumgray;
+  padding:0;
+  overflow:hidden;
+  white-space: nowrap;
+  height:20px;
+  max-height:20px;
+  overflow:hidden;
+  padding:5px !important;
+  overflow:hidden !important;
+  .thumb {
+    width:40px;
+    height:40px;
+    display:block;
+    vertical-align:top;
+    margin-bottom:-20px;
+  }
+}
+
+.angularTableRow:hover{
+  background-color: $tp-lightturqoise
+}
+
+.titlecol{
+    min-width:200px;
+}
+
+.thumbcol{
+    width:40px;
+    padding:0px !important;
+    vertical-align:top;
+}
+
+.yearcol{
+    width:45px;
+}
+
+.catnocol{
+    width:90px;
+}
+
+.trackcol{
+    width:50px;
+}
+
+.plbtn,.fullscreenbtn {
+  width:45px;
+}
+
+.fullscreenbtn {
+  @extend .btn;
+  text-align:center;
+  font-size:18px !important;
+  display: table-cell !important;
+  border-radius:0px;
+  span {
+      @extend .glyphicon;
+      @extend .glyphicon-fullscreen;
+  }
+}
+
+.plbtn {
+  @extend .btn;
+  display: table-cell !important;
+  border-radius:0px;
+  span {
+    @extend .glyphicon;
+    @extend .glyphicon-plus;
+  }
+}
+
+.angularTableHeaderColumn{
+  color: $tp-white;
+  background-color:$tp-blue !important;
+  padding:2px;
+  height:20px;
+  font-weight:bold;
+  font-size:15px;
+  border-bottom:none;
+  border-top:none;
+  .angularTableDefaultSortArrowAscending,
+  .angularTableDefaultSortArrowDescending {
+    border-bottom-color:$tp-white;
+    border-top-color:$tp-white;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  div {
+    display:inline-block;
+  }
+}
+
+.angularTableTableContainer {
+  -webkit-overflow-scrolling: touch;
+}
+
+.fullscreen {
+  background-color: $tp-white;
+  #search_form {
+    display:none;
+  }
+  #tab_buttons {
+    display:none;
+  }
+}
+
+.durationcol {
+  max-width:50px;
+  width:65px;
+  text-align:center;
+  .time {
+    @extend .glyphicon;
+    @extend .glyphicon-time;
+  }
+}
+
+@media screen and (max-width: $screen-sm-max) {
+    .extraartistscol {
+      display:none;
+    }
+    .durationcol {
+      display:none;
+    }
+    #discogs{
+      min-height:350px;
+    }
+    #cover {
+      display:none;
+    }
+    .tabtitle {
+      display:none;
+    }
+}

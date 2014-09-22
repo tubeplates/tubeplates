@@ -1,0 +1,30 @@
+<angular-table model="data.label_search.content" 
+               resize-events ="[fullscreen]"
+               ng-show="tabActive('label_search')">
+
+    <header-row>
+
+        <header-column class="thumbcol" sortable="false" sort-field-name="thumb">
+        </header-column>
+
+        <header-column ng-click="sort('title')" class="titlecol">
+            <div>Title</div>
+            <sort-arrow name="title"/>
+        </header-column>
+
+        <header-column ng-click="togglefullScreen()" class="fullscreenbtn">
+        <span></span>
+        </header-column>
+
+    </header-row>
+
+    <row ng-click="t_viewLabel($event,row)" ng-class="{selected: row.rowSelected}">
+        <column class="thumbcol"
+                ng-mouseenter="labelInfo(row) && setCoverimg(row.thumb)"
+                ng-mouseleave="setCoverimg()">
+                <img class="thumb" ng-src="{{ row.thumb}}"/>
+        </column>
+        <column>{{ row.title}}</column>
+    </row>
+
+</angular-table>

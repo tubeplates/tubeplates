@@ -1,0 +1,68 @@
+<!doctype html>
+<html ng-app="TubePlates">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title ng-bind="title">TubePlates</title>
+
+    <!-- for Google -->
+    <meta name="description" 
+          content="TubePlates is an app to listen to releases listed on
+          Discogs easily using YouTube" />
+    <meta name="application-name" content="TubePlates" />
+
+    <!-- for Facebook -->          
+    <meta name="og:description" 
+          content="TubePlates is an app to listen to releases listed on 
+          Discogs easily using YouTube" />
+
+    <meta name="og:image" content="images/circle.png" />
+
+    <meta id="viewport" name="viewport" content ="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <!-- build:css({.tmp,app}) tubeplates.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <link rel="stylesheet" href="bower_components/angular-table/src/main/webapp/css/lib/angular-table.css"/>
+    <link rel="stylesheet" href="styles/main.css"/>
+    <!-- endbuild -->
+  </head>
+  <body>
+    <div id="main" ng-cloak ng-class="{back: fullscreen}">
+      <div id="playersection" ng-controller="PlayerCtrl">
+        <ng-include src="'views/player.html'" style="display:block;height:100%"/>
+      </div>
+      <div id="discogs" discogs-section ng-class="{fullscreen: fullscreen}" ng-controller="DiscogsCtrl">
+        <ng-include src="'views/discogs.html'"/>
+      </div>
+    </div>
+
+
+    <!-- build:js({.tmp,app}) tubeplates.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-youtube/angular-youtube-player-api.js"></script>
+    <script src="bower_components/angular-ui-sortable/sortable.js"></script>
+    <!-- endbower -->
+    <script src="bower_components/angular-table/src/main/webapp/js/lib/angular-table.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/directives.js"></script>
+    <script src="scripts/router.js"></script>
+    <script src="scripts/player/playlist.js"></script>
+    <script src="scripts/player/relevance.js"></script>
+    <script src="scripts/player/ytsearch.js"></script>
+    <script src="scripts/player/playerctrl.js"></script>
+    <script src="scripts/player/trackfinder.js"></script>
+    <script src="scripts/discogs-browser/configuration.js"></script>
+    <script src="scripts/discogs-browser/scraper.js"></script>
+    <script src="scripts/discogs-browser/discogs.js"></script>
+    <script src="scripts/discogs-browser/discogsctrl.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

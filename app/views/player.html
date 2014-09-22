@@ -1,0 +1,33 @@
+<div id="header">
+  <div id="left-header">
+  <h2> <a href="/">TubePlates</a></h2>
+  </div>
+  <div id="right-header">
+        <div id="playlist-controls">
+        <button ng-click="prevTrack()" class="nextprev" id="plprev">
+          <span></span>
+        </button> 
+        <button ng-click="nextTrack()" class="nextprev" id="plnext">
+          <span></span>
+        </button> 
+        <button ng-click="playlist.clear()" id="clear">Clear</button> 
+        </div>
+  </div>
+</div>
+
+<div id="player">
+  <youtube-player  class="col-md-8" id="youtube" video-id="videoID"></youtube-player>
+  <div id="playlist">
+  <p ng-show="playlist.items.length == 0" id="emptytext" ng-show="true">Playlist is empty</p>
+  <table>
+  <tbody ui-sortable="sortableOptions" ng-model="playlist.items">
+    <tr ng-class="{'playing': playlist.playing == $index, 'notfound':item.notfound}"
+        ng-repeat="item in playlist.items">
+      <td class="trackname"><a ng-click="changeTrack($index)"> {{item.name}}</a></td>
+      <td>{{item.artist}}</td>
+      <td ng-click="playlist.removeItem($index)" class="remove-item"><span></span></td>
+    </tr>
+  </tbody>
+  </table>
+  </div>
+</div>

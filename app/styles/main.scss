@@ -1,0 +1,158 @@
+$icon-font-path: "/fonts/";
+
+//OVERRIDE SCREEN SIZES
+$screen-sm-min: 0px;
+$screen-sm-max: 521px;
+$screen-md-min: 522px;
+
+//COLORS
+$tp-lightgray: #EEEEEE;
+$tp-mediumgray: #D4D4D4;
+$tp-darkgray: #333333;
+
+$tp-white: #FFFFFF;
+$tp-black: #1B1B1B;
+
+$tp-lightred: #FFCCCC;
+$tp-darkred: #8B0000;
+$tp-blue: #4869A3;
+
+$tp-lightturqoise: #EAF6F9;
+$tp-turqoise: #87CEFA;
+
+@import 'sass-bootstrap/lib/bootstrap';
+@import 'discogs';
+@import 'player';
+
+html,body {
+  height:100%;
+  min-height:700px;
+  width:100%;
+  margin:0;
+  padding:0;
+  background-color:$tp-darkgray;
+}
+
+//Make angular hide everything before loading
+[ng\:cloak], [ng-cloak], [data-ng-cloak], 
+[x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+.notfound, .notfound:hover, .notfound td{
+  background-color: $tp-lightred !important;
+}
+
+#main {
+  background-color: $tp-white;
+  height: 100%;
+  width: 1000px;
+  max-width:100%;
+  margin:0 auto;
+  padding: 0 30px;
+  border-left: 1px solid $tp-darkred;
+  border-right: 1px solid $tp-darkred;
+  border-radius: 0px;
+  box-shadow: 0px 0px 15px 5px $tp-black;
+  >div {
+    margin:0 auto;
+  }
+}
+
+div#main.back {
+  min-height:0px;
+  height:0px;
+  overflow:hidden;
+}
+
+//HEADER STARTS
+#header {
+    @extend .row;
+    margin-bottom:10px;
+}
+
+h2 {
+  display:inline-block;
+  a {
+    @extend h2;
+    margin:0;
+  }
+}
+
+#left-header {
+  @extend .col-md-4;
+}
+
+#right-header {
+  @extend .col-md-6;
+  @extend .col-md-offset-2;
+}
+
+#github-button{
+  @extend .btn;
+  @extend .btn-default;
+  @extend .btn-lg;
+  display:block;
+  margin:0 auto;
+  width:200px;
+  img {
+    padding-right:5px;
+    padding-bottom:4px;
+  }
+}
+
+.fullscreen {
+  position:fixed;
+  min-width:100% !important;
+  min-height:100% !important;
+  height:100% !important;
+  width:100% !important;
+  top:0px !important;
+  left:0px !important;
+}
+
+.tooltip-inner {
+      white-space:pre-wrap;
+}
+
+.thumbnail.with-caption {
+  display: inline-block;
+  background: #f5f5f5;
+}
+
+.thumbnail.with-caption p {
+  margin: 0;
+  padding-top: 0.5em;
+}
+
+.thumbnail.with-caption small:before {
+  content: '\2014 \00A0';
+}
+
+.thumbnail.with-caption small {
+  width: 100%;
+  text-align: right;
+  display: inline-block;
+  color: #999;
+}
+
+#about {
+    background-color:$tp-lightgray;
+    border-radius:5px;
+    padding:5px;
+    em {
+        color:$tp-blue;
+        font-weight:bold;
+    }
+}
+
+@media screen and (max-width: $screen-sm-max) {
+    #main {
+      min-height:1200px;
+      padding: 15px;
+      height:100%;
+    }
+    #right-header, #left-header {
+      margin: 0 auto;
+      text-align:center;
+    }
+}

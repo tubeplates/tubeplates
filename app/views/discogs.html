@@ -1,0 +1,80 @@
+<div id="cover" ng-show="coverimg">
+  <img ng-src="{{coverimg}}"/>
+  <div class="img_caption" ng-show="covercaption 
+       && (current_view == 'label_search' || current_view == 'artist_search')">
+    {{covercaption}}
+  </div>
+</div>
+
+<div id="search_form">
+  <form ng-submit="search()">
+        <div id="query">
+          <input type="text" ng-model="searchParams.q" autofocus>
+        </div>
+        <div id="search_category">
+          <select ng-model="searchParams.type" 
+            ng-options="c[0].toUpperCase()+c.substring(1)
+                        for c in categories">
+          </select> 
+        </div>
+  </form>
+</div>
+<ng-include src="'views/about.html'"></ng-include>
+
+<div id="tab_buttons">
+
+  <button ng-if="history['search']" type="button" 
+          ng-click="prevSearch()" 
+          ng-disabled="current_view.indexOf('_search') != -1 && !showAbout()">
+    <span id="searchicon"></span>
+    <span class="tabtitle">
+      {{history['search'].query.substring(0,20)}}
+    </span>
+  </button>
+
+  <button ng-if="history['label']" type="button"
+          ng-disabled="current_view == 'label' && !showAbout()" ng-click="prevLabel()">
+    <span id="labelicon"></span>
+    <span class="tabtitle">
+      {{history['label'].name}}
+    </span>
+  </button>
+
+  <button ng-if="history['artist']" type="button"
+          ng-disabled="current_view == 'artist' && !showAbout()" ng-click="prevArtist()">
+    <span id="artisticon"></span>
+    <span class="tabtitle">
+      {{history['artist'].name.substring(0,20)}}
+    </span>
+  </button>
+
+  <button ng-if="history['release']" type="button"
+          ng-disabled="current_view == 'release' && !showAbout()" ng-click="prevRelease()">
+    <span id="releaseicon"></span>
+    <span class="tabtitle">
+      {{history['release'].name.substr(0,20)}}
+    </span>
+  </button>
+
+</div>
+
+<loading-spinner speed="2" src="images/loading.gif" ng-show="loading()" id="loaderImage">
+  <img ng-if="false" src="images/loading.gif"/>
+</loading-spinner>
+
+<div style="height:100%" class="alert" ng-show="!showAbout() && no_results()">
+  <strong>
+    <p class="text-center">No results!</p>
+  </strong>
+</div>
+
+</div>
+<span ng-show="!showAbout()">
+<ng-include src="'views/discogs-tabs/release_search.html'"></ng-include>
+<ng-include src="'views/discogs-tabs/artist_search.html'"/></ng-include>
+<ng-include src="'views/discogs-tabs/label_search.html'"/></ng-include>
+
+<ng-include src="'views/discogs-tabs/release.html'"/></ng-include>
+<ng-include src="'views/discogs-tabs/artist.html'"/></ng-include>
+<ng-include src="'views/discogs-tabs/label.html'"></ng-include>
+</span>

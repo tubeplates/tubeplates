@@ -1,0 +1,56 @@
+<angular-table model="data.release.content" 
+               resize-events ="[fullscreen]"
+               ng-show="tabActive('release')">
+
+    <header-row>
+
+        <header-column ng-click="sort('position.sort')" class="trackcol">
+            <div>Track</div>
+            <sort-arrow name="position.sort"/>
+        </header-column>
+
+        <header-column ng-click="sort('title')">
+            <div>Title</div>
+            <sort-arrow name="title"/>
+        </header-column>
+
+        <header-column ng-click="sort('artist')">
+            <div>Artist</div>
+            <sort-arrow name="artist"/>
+        </header-column>
+
+        <header-column ng-show="extraArtists()" 
+                       ng-click="sort('extraartists')" class="extraartistscol">
+            <div>Extra Artists</div>
+            <sort-arrow name="extraartists"/>
+        </header-column>
+
+        <header-column ng-show="Duration()"
+            class="durationcol"
+            ng-click="sort('duration')">
+            <div class="time"></div>
+            <sort-arrow name="duration"/>
+        </header-column>
+
+        <header-column ng-click="togglefullScreen()" class="fullscreenbtn">
+        <span></span>
+        </header-column>
+
+    </header-row>
+ 
+    <row ng-click="t_playTrack($event,row)" ng-class="{selected: row.rowSelected, notfound: row.notFound}">
+        <column class="trackcol">{{ row.position.display }}</column>
+        <column>{{ row.title }}</column>
+        <column>{{ row.artist }}</column>
+        <column class="extraartistscol" ng-show="extraArtists()">
+          {{ row.extraartists }}
+        </column>
+        <column class="durationcol" ng-show="Duration()">
+          {{ row.duration }}
+        </column>
+        <column ng-click="t_addToPlaylist($event,row)"  class="plbtn">
+          <span></span>
+        </column>
+    </row>
+
+</angular-table>

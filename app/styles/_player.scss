@@ -1,0 +1,135 @@
+#player {
+  height:32%;
+}
+
+#playlist-controls {
+  @extend .btn-group-lg;
+  @extend .col-md-4;
+  padding:15px 0;
+  padding-bottom:5px;
+  width:230px;
+  margin:0;
+  width:100%;
+  span {
+    @extend .glyphicon;
+  }
+  #plprev span{
+    @extend .glyphicon-step-backward;
+  }
+  #plnext span{
+    @extend .glyphicon-step-forward;
+  }
+  button {
+    @extend .btn;
+    @extend .btn-primary;
+    background-color: $tp-blue;
+    padding:10px !important;
+  }
+}
+
+#clear {
+  width:45%;
+}
+
+#playersection {
+  @extend .row;
+}
+
+#youtube{
+  @extend .col-md-6;
+  height: 221px;
+  float: left;
+  min-width: 221px;
+  max-width:100%;
+  display:block;
+  background-color: $tp-black;
+}
+
+#playlist {
+  @extend .col-md-6;
+  min-height: 221px;
+  height: 221px;
+  font: 16px/26px Georgia, Garamond, Serif;
+  border: 1px solid $tp-mediumgray;
+  padding:5px;
+  overflow:auto;
+  -webkit-overflow-scrolling: touch;
+  max-height:33%;
+  #emptytext {
+    width:100%;
+    text-align:center;
+    color: $tp-mediumgray;
+  }
+  table {
+    @extend .table-responsive;
+    @extend .table-striped;
+    width:100%;
+    tr {
+      border-top: 1px solid $tp-mediumgray;
+      height:29px;
+      a:hover {
+        cursor:pointer;
+      }
+      .remove-item {
+        width:30px;
+      }
+      td {
+        cursor:default;
+      }
+      .remove-item {
+          span {
+          @extend .glyphicon;
+          @extend .glyphicon-remove;
+          color:$tp-darkred;
+          cursor:pointer;
+        }
+      }
+    }
+    tr:hover td{
+      background-color: $tp-lightturqoise !important;
+    }
+    tr.playing td{
+      background-color: $tp-turqoise !important;
+      a {
+        color:black;
+      }
+    }
+    .ui-sortable-helper{
+      td {
+        display:inline-block;
+        float:left;
+        width:50%;
+      }
+      .remove-item {
+        display:none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $screen-sm-max) {
+    #playlist,#youtube {
+      display:block;
+      width:100%;
+      float:left;
+    }
+    .nextprev {
+      margin: 0 auto;
+      width:43%;
+      min-width:100px;
+      width:37%;
+    }
+    #clear {
+      width:68px;
+    }
+}
+
+
+@media screen and (min-width: $screen-md-min) {
+    .nextprev {
+      width:25%;
+    }
+    #clear {
+      display:inline;
+    }
+}

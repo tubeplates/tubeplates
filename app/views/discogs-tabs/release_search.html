@@ -1,0 +1,45 @@
+<angular-table
+               model="data.release_search.content"
+               ng-show="tabActive('release_search')"
+               resize-events ="[fullscreen]"
+               >
+
+    <header-row>
+
+        <header-column class="thumbcol"></header-column>
+
+        <header-column ng-click="sort('year')" class="yearcol">
+            <div>Year</div>
+            <sort-arrow name="year"/>
+        </header-column>
+
+        <header-column ng-click="sort('catno')" class="catnocol">
+            <div>CATNO</div>
+            <sort-arrow name="catno"/>
+        </header-column>
+
+        <header-column ng-click="sort('title')" class="titlecol">
+            <div>Title</div>
+            <sort-arrow name="title"/>
+        </header-column>
+
+        <header-column ng-click="togglefullScreen()" class="fullscreenbtn">
+          <span></span>
+        </header-column>
+
+    </header-row>
+      <row ng-click="t_viewRelease($event,row)" ng-class="{selected: row.rowSelected}">
+      <column class="thumbcol"
+              ng-mouseenter="setCoverimg(row.thumb)"
+              ng-mouseleave="setCoverimg()">
+            <img class="thumb" ng-src="{{ row.thumb}}"/>
+        </column>
+        <column class="yearcol">{{ row.year}}</column>
+        <column class="catnocol">{{ row.catno }}</column>
+        <column>{{ row.title }}</column>
+        <column ng-click="t_addToPlaylist($event,row)"  class="plbtn">
+          <span></span>
+        </column>
+    </row>
+
+</angular-table>
