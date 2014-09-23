@@ -20,11 +20,13 @@ app.factory "$discogs", [
     #Remove duplicate releases(same catno)
     remove_duplicates = (releases) ->
         catnos = {}
+        ids = {}
         release_set = []
         for i,release of releases
-            if not catnos[release.catno] or not release.catno
+            if (not catnos[release.catno] or not release.catno) and not ids[release.id]
               release_set.push release
               catnos[release.catno] = true
+              ids[release.id] = true
         release_set
 
     #Move all keys from resource.data to resource
@@ -111,7 +113,9 @@ app.factory "$discogs", [
                                "releases", params, max_pages or 6
         artist.$promise.then ->
           for index,release of artist.releases
-              release.id = release.main_release if release.main_release
+              #release.id = release.main_release if release.main_release
+              release.is_master = release.type == "master"
+              release.type = "release"
               thumbfix(release)
           artist.releases = remove_duplicates(artist.releases)
           Artist({id:params.id}).$promise.then (artist_details) ->
