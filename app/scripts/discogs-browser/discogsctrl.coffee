@@ -330,9 +330,11 @@ app.controller "DiscogsCtrl", [
 
         $scope.t_addToPlaylist= ($event,row) ->
             return if not row
+            console.log(row)
             $event.stopPropagation()
             if row.type == "release"
-               $discogs.Release({id: row.id}).$promise.then (release)->
+               service = if row.is_master then $discogs.Master else $discogs.Release
+               service({id: row.id}).$promise.then (release)->
                   for i,release of release.tracklist
                       $rootScope.$broadcast("addTrackToPlaylist",
                                             release.title,
