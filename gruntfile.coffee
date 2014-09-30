@@ -19,7 +19,7 @@ module.exports = (grunt) ->
     watch:
       coffee:
         files: ["<%= yeoman.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}"]
-        tasks: ["newer:coffee:dist"]
+        tasks: ["newer:coffee:dist","coffeelint"]
 
       compass:
         files: ["<%= yeoman.app %>/styles/{,*/}*.{scss,sass}"]
@@ -117,6 +117,13 @@ module.exports = (grunt) ->
           dest: ".tmp/scripts"
           ext: ".js"
         ]
+    coffeelint:
+      options:
+        configFile: "coffeelint.json"
+      all:
+        expand: true
+        cwd: "<%= yeoman.app %>/scripts"
+        src: "**/*.coffee"
 
     # Compiles Sass to CSS and generates necessary files if requested
     compass:
@@ -240,6 +247,7 @@ module.exports = (grunt) ->
         "nginclude:server"
       ]
       dist: [
+        "coffeelint"
         "coffee"
         "compass:dist"
       ]
