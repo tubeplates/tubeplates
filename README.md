@@ -13,7 +13,7 @@ This is how it works:
 Points to consider
 -----------
 * The YouTube results are estimated and therefore not perfect; don't expect them to be correct at all times.
-* It doesn't work on mobile OSes(iOS,Android) due to restrictions in their video players.
+* It doesn't work on default browsers on mobile OSes(iOS,Android) due to restrictions in their video players but it does seem to work on the [Puffin browser](http://www.puffinbrowser.com/download/) which has a free version.
 
 Building
 -----------
