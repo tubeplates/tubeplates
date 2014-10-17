@@ -106,4 +106,34 @@ app.factory "$dcscraper", [
             getData()
       getData()
       deferred.promise
+
+    #Search API now apparently requires Authentication,
+    #unfortunately scraping it has then becomes the better option
+    Search: (params) ->
+      params['limit'] = 250
+      deferred = $q.defer()
+      page = 1
+      results = {'results': [] }
+      pages = -1
+      getData = ->
+      DiscogsRequest("/search/",params)
+      .then (data) ->
+        data = data.data if data.data
+        rows = $(data).find("#search_results div.card")
+        $.each rows, (i,v) ->
+            row = $(this)
+            release = {}
+            release.thumb = row.find(".thumbnail_center img").attr("src")
+            release.country = row.find(".card_release_country").html()
+            release.format = row.find(".card_release_format").html().split(",")
+            release.title = row.find("h4 span[itemprop='name'] a").html()\
+                            + " - " + \
+                            row.find("h4 .search_result_title").html()
+            release.catno = row.find(".card_release_catalog_number").html()
+            release.year = row.find(".card_release_year").html()
+            release.id = parseInt(row.data("id").substring(1))
+            release.type = "release"
+            results.results.push(release)
+        deferred.resolve results
+      deferred.promise
 ]

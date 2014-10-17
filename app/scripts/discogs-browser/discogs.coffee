@@ -139,16 +139,7 @@ app.factory "$discogs", [
     #PUBLIC METHODS:
 
     Search: (params) ->
-      deferred = $q.defer()
-      search = MultiPageData "/database/search", "results", params, 3
-      promise = search.$promise
-      search.$promise = deferred.promise
-      promise.then ->
-        for k,v of search.results
-          v.relevance = parseInt(k)
-          thumbfix(v)
-        deferred.resolve search
-      search
+      return {'$promise': $dcscraper.Search(params) }
 
     Release: (params) ->
       Record(params,"/releases/:id")
