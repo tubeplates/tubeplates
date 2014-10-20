@@ -334,10 +334,10 @@ app.controller "DiscogsCtrl", [
       if row.type == "release"
         service = if row.is_master then $discogs.Master else $discogs.Release
         service({id: row.id}).$promise.then (release)->
-        for i,release of release.tracklist
-          $rootScope.$broadcast("addTrackToPlaylist",
-                                release.title,
-                                release.artist)
+          for i,release of release.tracklist
+            $rootScope.$broadcast("addTrackToPlaylist",
+                                    release.title,
+                                    release.artist)
       else
         $rootScope.$broadcast("addTrackToPlaylist",
                               row.title,
