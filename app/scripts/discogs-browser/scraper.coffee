@@ -42,22 +42,22 @@ app.factory "$dcscraper", [
           data = data.data if data.data
           if page == 1
             pages = $(data).find(".pagination_total")\
-                    .html().trim().split(" ")
+                    .text().trim().split(" ")
             pages = parseInt(pages[pages.length-1].replace(",",""))
             pages = Math.ceil(pages/per_page)
-            label.name = $(data).find("h1").html()
+            label.name = $(data).find("h1").text()
           rows = $(data).find("#label tr")
           $.each rows, (i,v) ->
             return true if $(this).attr("class") == "headings"
             release = {}
             release.id = $(this).attr("id").substring(1)
             release.is_master = $(this).data("object-type") != "release"
-            release.artist = $(this).find(".artist>a").html()
-            release.title = $(this).find(".title>a").html()
-            release.catno = $(this).find(".catno>span").html()
+            release.artist = $(this).find(".artist>a").text()
+            release.title = $(this).find(".title>a").text()
+            release.catno = $(this).find(".catno>span").text()
             release.thumb = $(this).find(".image img").attr("src")
             release.thumb = release.thumb.replace("R-90","R-150")
-            release.year = $(this).find(".year").html()
+            release.year = $(this).find(".year").text()
             release.type = "release"
             label.releases.push(release)
           if page >= pages
@@ -126,14 +126,14 @@ app.factory "$dcscraper", [
               res = {}
               res.id = parseInt(row.data("id").substring(1))
               res.thumb = row.find(".thumbnail_center img").attr("src")
-              res.title = row.find(".search_result_title").html()
+              res.title = row.find(".search_result_title").text()
               if params.type is "release"
-                res.country = row.find(".card_release_country").html()
-                res.format = row.find(".card_release_format").html().split(",")
-                res.title = row.find("h4 span[itemprop='name'] a").html()\
+                res.country = row.find(".card_release_country").text()
+                res.format = row.find(".card_release_format").text().split(",")
+                res.title = row.find("h4 span[itemprop='name'] a").text()\
                                 + " - " + res.title
-                res.catno = row.find(".card_release_catalog_number").html()
-                res.year = row.find(".card_release_year").html()
+                res.catno = row.find(".card_release_catalog_number").text()
+                res.year = row.find(".card_release_year").text()
               res.type = params.type
               results.results.push(res)
         deferred.resolve results
