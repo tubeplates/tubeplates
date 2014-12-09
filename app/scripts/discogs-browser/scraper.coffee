@@ -45,7 +45,7 @@ app.factory "$dcscraper", [
                     .text().trim().split(" ")
             pages = parseInt(pages[pages.length-1].replace(",",""))
             pages = Math.ceil(pages/per_page)
-            label.name = $(data).find("h1").text()
+            label.name = $(data).find("h1").first().text()
           rows = $(data).find("#label tr")
           $.each rows, (i,v) ->
             return true if $(this).attr("class") == "headings"
@@ -111,6 +111,7 @@ app.factory "$dcscraper", [
     #unfortunately scraping it has then becomes the better option
     Search: (params) ->
       params['limit'] = 250
+      params['layout'] = 'med'
       deferred = $q.defer()
       page = 1
       results = {'results': [] }
