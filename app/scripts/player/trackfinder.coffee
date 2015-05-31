@@ -3,6 +3,8 @@
 ###
 A service for searching YouTube
 ###
+
+
 app.factory "$ytTrackFinder", [
   "$q"
   "$ytsearch"
@@ -17,10 +19,21 @@ app.factory "$ytTrackFinder", [
                 .map( (t,i) -> t*Math.pow(60,i)))\
                 .reduce (a,b) -> a+b)
 
+    convert_time = (duration) ->
+        total = 0
+        hours = duration.match(/(\d+)H/)
+        minutes = duration.match(/(\d+)M/)
+        seconds = duration.match(/(\d+)S/)
+        if hours
+            total += parseInt(hours[1]) * 3600
+        if minutes
+            total += parseInt(minutes[1]) * 60
+        if seconds
+            total += parseInt(seconds[1])
+        total
+
     entryID = (entry) ->
-      id_container = entry.id.$t
-      index = id_container.indexOf "video:"
-      id = id_container.substring(index+6)
+      entry.id.videoId
 
     Find: (artist,title,duration,extraartists) ->
       deferred = $q.defer()
@@ -29,51 +42,47 @@ app.factory "$ytTrackFinder", [
       .then (data) ->
         if typeof(data) == "string"
           data = $.parseJSON(data)
-        entries = data.data.feed.entry
+        entries = data.data.items
         highest = 0
         non_music_cats = [
-          "Autos"
-          "Comedy"
-          "Education"
-          "Howto"
-          "Gaming"
-          "News"
-          "Activism"
-          "Pets"
-          "Science"
-          "Sports"
-          "Travel"
+          "2" #Autos
+          "23" #Comedy
+          "27" #Education
+          "26" #Howto
+          "20" #Gaming
+          "25" #News
+          "29" #Activism
+          "25" #Pets
+          "28" #Science
+          "17" #Sports
+          "19" #Travel
         ]
         for index,entry of entries
           skipentry = false
-          for i,access of entry.yt$accessControl
-            if access.action == "embed"
-              if access.permission == "denied"
-                skipentry = true
-          category = entry.media$group.media$category[0].$t
+          category = entry.categoryID
           for cat in non_music_cats
-            if category.indexOf(cat) != -1
+            if category == cat
               skipentry = true
           if skipentry
             entry.heuristic = 0
             continue
           entry.heuristic = 0
-          entry_title = entry.title.$t
-          entry_duration = entry.media$group.yt$duration.seconds
+          entry_title = entry.snippet.title
+          entry_duration = convert_time entry.duration
           entry_duration = parseInt(entry_duration)
 
           titleScore = $r.trackTitleScore artist,title,entry_title
-          extraArtistsScore= $r.extraArtistsScore extraartists,entry_title
+          extraArtistsScore = $r.extraArtistsScore extraartists,entry_title
           commonWords = $r.commonWordsScore title,entry_title
           extraartists = extraartists or ""
           noncommonWords = $r.nonCommonWordsScore(
                               artist + " " + extraartists,
                               title,
                               entry_title)
-          trackTypeScore = $r.trackTypeScore title,entry_title
           durationDifferenceRatio = $r.durationDifferenceRatio(
                                 entry_duration,
                                 seconds)
+          trackTypeScore = $r.trackTypeScore title,entry_title
           h = 0
           if titleScore > 0
             h++
