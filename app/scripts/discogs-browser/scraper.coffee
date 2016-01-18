@@ -10,7 +10,7 @@ app.factory "$dcscraper", [
   "$discogsconfig"
   ($q,$http,$cfg) ->
     DiscogsRequest = (path,params) ->
-      fullpath = $cfg.DISCOGS_URL + path
+      fullpath = "https://crossorigin.me/" + $cfg.DISCOGS_URL + path
       #IE 9 and older
       if window.XDomainRequest
         deferred = $q.defer()
