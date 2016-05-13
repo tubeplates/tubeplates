@@ -88,16 +88,7 @@ app.factory "$discogs", [
               artists = track.artists
           else if release.artists
               artists = release.artists
-          artistnames = []
-          for index,artist of artists
-            artistnames.push (artist.name.replace re,"")\
-                              .replace(", The","")
-          track.artist = artistnames.join(", ")
-          if track.extraartists and track.extraartists.length > 0
-            extraartists = []
-            for i,artist of track.extraartists
-                extraartists.push artist.name.replace(re,"")
-            track.extraartists = extraartists.join(",")
+          track.artists = artists
           track.position = {display: track.position,\
                             sort: parseInt(trackindex)}
           tracks.push track
@@ -115,7 +106,6 @@ app.factory "$discogs", [
                                "releases", params, max_pages or 6
       artist.$promise.then ->
         for index,release of artist.releases
-          #release.id = release.main_release if release.main_release
           release.is_master = release.type == "master"
           release.type = "release"
           thumbfix(release)

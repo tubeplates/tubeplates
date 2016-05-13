@@ -231,6 +231,17 @@ input,select {
   }
 }
 
+.artistcol, .extraartistscol {
+    a, a:visited {
+        text-decoration:none;
+        color:$tp-darkgray;
+    }
+    a:hover {
+        text-decoration:underline;
+        color:$tp-blue;
+    }
+}
+
 @media screen and (max-width: $screen-sm-max) {
     .extraartistscol {
       display:none;

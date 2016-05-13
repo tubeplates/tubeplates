@@ -41,9 +41,17 @@
     <row ng-click="t_playTrack($event,row)" ng-class="{selected: row.rowSelected, notfound: row.notFound}">
         <column class="trackcol">{{ row.position.display }}</column>
         <column>{{ row.title }}</column>
-        <column>{{ row.artist }}</column>
+        <column class="artistcol">
+            <span ng-repeat="artist in row.artists">
+                <a ng-click="$event.stopPropagation()" href="#?artist={{artist.id}}">{{artist.name}}</a>
+                {{$last ? '' : ', '}}
+            </span>
+        </column>
         <column class="extraartistscol" ng-show="extraArtists()">
-          {{ row.extraartists }}
+            <span ng-repeat="artist in row.extraartists">
+                <a ng-click="$event.stopPropagation()" href="#?artist={{artist.id}}">{{artist.name}}</a>
+                {{$last ? '' : ', '}}
+            </span>
         </column>
         <column class="durationcol" ng-show="Duration()">
           {{ row.duration }}

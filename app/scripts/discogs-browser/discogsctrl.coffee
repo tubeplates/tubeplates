@@ -150,7 +150,7 @@ app.controller "DiscogsCtrl", [
         row.rowSelected = true
         track =
             name: row.title
-            artist: row.artist
+            artist: row.artists
             duration: row.duration
         $rootScope.$broadcast("playTrack",track)
 
@@ -325,7 +325,7 @@ app.controller "DiscogsCtrl", [
     $scope.t_playTrack = ($event,row) ->
       return if not row
       $scope.selectRow(row)
-      $scope.playTrack(row.artist, row.title,
+      $scope.playTrack(row.artists, row.title,
                        row.duration, row.extraartists)
 
     $scope.t_addToPlaylist= ($event,row) ->

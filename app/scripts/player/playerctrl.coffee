@@ -79,15 +79,15 @@ app.controller "PlayerCtrl", [
         return if not item or $scope.playing
         $scope.videoID = ""
         $scope.playing = true
-        artists = item.artist.split ","
+        artists = item.artist
         if item.extraartists
           extraartists = artists.slice(1)\
-          .concat(item.extraartists.split(",")).join(",")
+          .concat(item.extraartists).join(",")
         else
           extraartists = artists.slice(1).join(",")
 
         track =
-          artist: artists[0]
+          artist: artists[0].name
           extraartists: extraartists
           title: item.name
           duration: item.duration
