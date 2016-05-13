@@ -21,6 +21,7 @@ $tp-lightturqoise: #EAF6F9;
 $tp-turqoise: #87CEFA;
 
 @import 'sass-bootstrap/lib/bootstrap';
+@import 'font-awesome/scss/font-awesome';
 @import 'discogs';
 @import 'player';
 
@@ -94,9 +95,11 @@ h2 {
   display:block;
   margin:0 auto;
   width:200px;
-  img {
-    padding-right:5px;
-    padding-bottom:4px;
+  i {
+      @extend .fa;
+      @extend .fa-github;
+      font-size:21px;
+      margin-right:5px;
   }
 }
 

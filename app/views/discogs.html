@@ -59,9 +59,7 @@
 
 <ng-include src="'views/about.html'"></ng-include>
 
-<loading-spinner speed="2" src="images/loading.gif" ng-show="loading()" id="loaderImage">
-  <img ng-if="false" src="images/loading.gif"/>
-</loading-spinner>
+<i ng-show="loading()" id="loadingspinner" class=""></i>
 
 <div style="height:100%" class="alert" ng-show="!showAbout() && no_results()">
   <strong>

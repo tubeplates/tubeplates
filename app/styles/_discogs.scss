@@ -14,6 +14,20 @@
   }
 }
 
+#loadingspinner {
+    @extend .fa;
+    @extend .fa-circle-o-notch;
+    @extend .fa-spin;
+    @extend .fa-fw;
+    color: $tp-blue;
+    -webkit-animation: fa-spin 0.5s infinite linear;
+    animation: fa-spin 0.5s infinite linear;
+    font-size:128px;
+    display:block;
+    margin: 0 auto;
+    margin-top:3px;
+}
+
 #search_form
 input,select {
   @extend .form-control;
@@ -24,12 +38,6 @@ input,select {
 }
 #query {
   @extend .col-md-8;
-}
-
-#loaderImage {
-  display:block;
-  margin: 0 auto;
-  margin-top:3px;
 }
 
 #cover {
