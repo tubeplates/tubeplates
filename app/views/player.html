@@ -24,7 +24,7 @@
     <tr ng-class="{'playing': playlist.playing == $index, 'notfound':item.notfound}"
         ng-repeat="item in playlist.items">
       <td class="trackname"><a ng-click="changeTrack($index)"> {{item.name}}</a></td>
-      <td>{{item.artist}}</td>
+      <td>{{item.artist[0].name}}</td>
       <td ng-click="playlist.removeItem($index)" class="remove-item"><span></span></td>
     </tr>
   </tbody>

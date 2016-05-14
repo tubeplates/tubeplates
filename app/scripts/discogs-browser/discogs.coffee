@@ -80,7 +80,7 @@ app.factory "$discogs", [
       deferred = $q.defer()
       release = jsonp_keyfix( DiscogsResource(path).get params )
       release.$promise.then ->
-        re = new RegExp("[(][0-9]+[)]")
+        re = new RegExp(" [(][0-9]+[)]")
         tracks = []
         for trackindex,track of release.tracklist
           continue if not track.position or not track.title
@@ -89,6 +89,8 @@ app.factory "$discogs", [
           else if release.artists
               artists = release.artists
           track.artists = artists
+          for _,artist of track.artists
+              artist.name = artist.name.replace(re,'')
           track.position = {display: track.position,\
                             sort: parseInt(trackindex)}
           tracks.push track

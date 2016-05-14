@@ -82,13 +82,13 @@ app.controller "PlayerCtrl", [
         artists = item.artist
         if item.extraartists
           extraartists = artists.slice(1)\
-          .concat(item.extraartists).join(",")
+          .concat(item.extraartists)
         else
-          extraartists = artists.slice(1).join(",")
+          extraartists = artists.slice(1)
 
         track =
           artist: artists[0].name
-          extraartists: extraartists
+          extraartists: extraartists.join(',')
           title: item.name
           duration: item.duration
         $ytTrackFinder.Find(track.artist,track.title,

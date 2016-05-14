@@ -337,9 +337,9 @@ app.controller "DiscogsCtrl", [
           for i,release of release.tracklist
             $rootScope.$broadcast("addTrackToPlaylist",
                                     release.title,
-                                    release.artist)
+                                    release.artists)
       else
         $rootScope.$broadcast("addTrackToPlaylist",
                               row.title,
-                              row.artist)
+                              row.artists)
 ]
