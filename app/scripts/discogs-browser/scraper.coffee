@@ -126,7 +126,7 @@ app.factory "$dcscraper", [
               row = $(this)
               res = {}
               res.id = parseInt(row.data("id").substring(1))
-              res.thumb = row.find(".thumbnail_center img").attr("src")
+              res.thumb = row.find(".thumbnail_center img").attr("data-src")
               res.title = row.find(".search_result_title").text()
               if params.type is "release"
                 res.country = row.find(".card_release_country").text()
