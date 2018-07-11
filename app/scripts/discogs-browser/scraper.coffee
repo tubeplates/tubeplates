@@ -128,11 +128,12 @@ app.factory "$dcscraper", [
               res.id = parseInt(row.data("id").substring(1))
               res.thumb = row.find(".thumbnail_center img").attr("data-src")
               res.title = row.find(".search_result_title").text()
+              artist_link = row.find("a")[1]
+              artist_name = artist_link && row.find("a")[1].innerHTML
               if params.type is "release"
                 res.country = row.find(".card_release_country").text()
                 res.format = row.find(".card_release_format").text().split(",")
-                res.title = row.find("h4 span[itemprop='name'] a").text()\
-                                + " - " + res.title
+                res.title = artist_name  + " - " + res.title
                 res.catno = row.find(".card_release_catalog_number").text()
                 res.year = row.find(".card_release_year").text()
               res.type = params.type
