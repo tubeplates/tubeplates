@@ -56,7 +56,7 @@ app.factory "$dcscraper", [
             release.title = $(this).find(".title>a").text()
             release.catno = $(this).find(".catno>span").text()
             release.thumb = $(this).find(".image img").attr("data-src")
-            release.thumb = release.thumb.replace("R-90","R-150")
+            release.thumb = release.thumb && release.thumb.replace("R-90","R-150")
             release.year = $(this).find(".year").text()
             release.type = "release"
             label.releases.push(release)
@@ -95,7 +95,7 @@ app.factory "$dcscraper", [
             release.title = $(this).find(".title>a").html()
             release.catno = $(this).find(".catno>span").html()
             release.thumb = $(this).find(".image img").attr("data-src")
-            release.thumb = release.thumb.replace("R-90","R-150")
+            release.thumb = release.thumb && release.thumb.replace("R-90","R-150")
             release.year = $(this).find(".year").html()
             release.type = "release"
             artist.releases.push(release)
